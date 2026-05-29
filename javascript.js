@@ -12,7 +12,7 @@ function populContGrid(n) {
     for (let c = 0; c < n; c++) {
       const cell = document.createElement('div');
       cell.classList.add('grid-cell');
-      setupHoverEffect(cell, "#555252")
+      setupHoverEffect(cell, getRandomColor())
       row.appendChild(cell);
     }
     gridContainer.appendChild(row);
@@ -53,3 +53,12 @@ function getNumberFromUser() {
 }
 
 populContGrid(dimGrid)
+
+//Extra credits
+
+function getRandomColor() {
+  // Math.random() gives 0–1, multiplied by 0xFFFFFF (16777215) covers all hex colors
+  // Math.floor() removes decimals, toString(16) converts to hex
+  // padStart ensures the result is always 6 characters (e.g. "00a1f3")
+  return "#" + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, "0");
+}
