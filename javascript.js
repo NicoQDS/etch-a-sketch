@@ -6,6 +6,7 @@ btnSetGrid.addEventListener("click", () => populContGrid(getNumberFromUser()));
 
 function populContGrid(n) {
   gridContainer.innerHTML = ''; // It clears any divs that were previously appended by an earlier call to populContGrid.
+  opacityCounter = 0
   for (let r = 0; r < n; r++) {
     const row = document.createElement('div');
     row.classList.add('grid-row');
