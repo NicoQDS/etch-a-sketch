@@ -1,5 +1,32 @@
 * {
-    outline: 1px solid red;
-    background-color: rgb(1, 18, 27);
-    height: 200px;
+    outline: 1px solid magenta;
 }
+
+div {
+    height: 10px;
+    width: 10px;
+}
+
+/* Non element family properties */
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+
+    }
+
+        #grid-btn-container {
+            /* add properties */
+        }
+
+            #set-grid {
+                /* add properties */
+            }
+
+            #grid-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
