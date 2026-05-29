@@ -1,4 +1,5 @@
 let dimGrid = 16
+let opacityCounter = 0
 const gridContainer = document.querySelector("#grid-container");
 const btnSetGrid = document.getElementById('btn-set-grid');
 btnSetGrid.addEventListener("click", () => populContGrid(getNumberFromUser()));
@@ -23,6 +24,8 @@ function setupHoverEffect(div, hoverColor) {
   // When the mouse enters, apply the hover color
   div.addEventListener('mouseenter', () => {
     div.style.backgroundColor = hoverColor;
+    div.style.opacity = opacityCounter
+    opacityCounter += 0.1
   });
 }
 
