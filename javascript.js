@@ -1,28 +1,55 @@
 let dimGrid = 16
-let rowDivs = new Array();
-let arrDivs = new Array();
 const gridContainer = document.querySelector("#grid-container");
+const btnSetGrid = document.getElementById('btn-set-grid');
+btnSetGrid.addEventListener("click", () => populContGrid(getNumberFromUser()));
 
+function populContGrid(n) {
+  gridContainer.innerHTML = ''; // It clears any divs that were previously appended by an earlier call to populContGrid.
+  for (let r = 0; r < n; r++) {
+    const row = document.createElement('div');
+    row.classList.add('grid-row');
 
-
-// Function to populate the div-container with divs
-function createGrid(num){
-    rowDivs = []
-    arrDivs = []
-    // Creating an array containing the number of divs according to the parameter received
-    for (let i = 0; i < num; i++) { 
-        for (let j = 0; j < num; j++){
-            rowDivs.push(document.createElement("div"))
-        }
-        arrDivs.push(rowDivs)
-        rowDivs = []
+    for (let c = 0; c < n; c++) {
+      const cell = document.createElement('div');
+      cell.classList.add('grid-cell');
+      setupHoverEffect(cell, "#555252")
+      row.appendChild(cell);
     }
-
-    // Lets populate #grid-container
-    while(true){
-        // do something
-    }
+    gridContainer.appendChild(row);
+  }
 }
 
-// Running the function
-createGrid(dimGrid)
+function setupHoverEffect(div, hoverColor) {
+  // When the mouse enters, apply the hover color
+  div.addEventListener('mouseenter', () => {
+    div.style.backgroundColor = hoverColor;
+  });
+}
+
+// Prompts the user to enter a number between 2 and 100. Keeps asking until a valid number is provided.
+function getNumberFromUser() {
+  while (true) {
+    // Ask the user for input and store it as a string
+    const input = prompt("Please enter a number between 2 and 100:");
+
+    // If the user clicked Cancel, prompt() returns null — stop the loop
+    if (input === null) {
+      console.log("User cancelled the input.");
+      return null;
+    }
+
+    // Convert the string input to a floating-point number
+    const number = parseFloat(input);
+
+    // Check that it's actually a number (not letters/symbols)
+    // and that it falls within the valid range [2, 100]
+    if (!isNaN(number) && number >= 2 && number <= 100) {
+      return number; // Valid input — exit the loop and return the value
+    }
+
+    // If we reach here, the input was invalid — notify the user and loop again
+    alert("Invalid input. Please enter a number between 2 and 100.");
+  }
+}
+
+populContGrid(dimGrid)
